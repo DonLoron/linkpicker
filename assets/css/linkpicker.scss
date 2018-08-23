@@ -1,0 +1,16 @@
+*[id] {
+  position: relative;
+  box-shadow: inset 0px 0px 15px 5px #f00;
+  > a.linkpicker-return {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: green;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  &:hover > a {
+    opacity: 1;
+  }
+}
