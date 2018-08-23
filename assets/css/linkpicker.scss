@@ -1,6 +1,8 @@
-*[id] {
+[id] {
+
   position: relative;
   box-shadow: inset 0px 0px 15px 5px #f00;
+
   > a.linkpicker-return {
     position: absolute;
     top: 100%;

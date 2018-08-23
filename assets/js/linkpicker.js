@@ -4,12 +4,11 @@
 
 const addonName = 'linkpicker';
 
-function linepickerOpenIframe () {
+function linepickerOpenIframe (that) {
   var win = window.open('/?' + addonName + '=true', '_blank', 'width=1300,height=800');
   win.focus();
   win.onbeforeunload = function(){
-    console.log('test');
-    console.log(this.linepicker);
+    that.parentNode.previousSibling.value = this.linepicker;
     return null;
   }
 }
