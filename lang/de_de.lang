@@ -1,0 +1,11 @@
+media_type_manager_title = Media Type Manager
+media_type_manager_effects = Media Type Sets
+media_type_manager_help = Hilfe
+media_type_manager_configuration = Standard Konfiguration
+
+media_type_manager_edit = bearbeiten
+media_type_manager_name = Set Name
+media_type_manager_description = Set Beschreibung
+media_type_manager_norowsmessage = Keine Sets definiert
+
+media_type_manager_addon_configuration = Addon Konfiguration
