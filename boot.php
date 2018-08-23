@@ -17,7 +17,7 @@ if(rex::isBackend()) {
   });
 } else {
   //if there is a backend session and get param linkpicker is set, parse html
-  if (rex_backend_login::hasSession() && rex_request::get($this->getName(), "string") == "true") {
+  if (rex_backend_login::hasSession() && (rex_request::get($this->getName(), "string") == "true" || rex_request::cookie($this->getName(), "string") == "true")) {
 
     rex_extension::register("OUTPUT_FILTER", function($p){
 

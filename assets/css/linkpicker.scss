@@ -13,7 +13,9 @@
     color: #fff;
     background-color: #4b9ad9;
     padding: 10px 15px;
-    font-family: Arial;
+    font-family: Arial !important;
+    font-size: 16px !important;
+    width: auto !important;
     cursor: pointer;
     &:hover {
       background-color: #31688f;
