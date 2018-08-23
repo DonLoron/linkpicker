@@ -24,12 +24,14 @@ if(rex::isBackend()) {
       $page = $p->getSubject();
 
       $js = '<script type="text/javascript" src="' . rex_url::assets('addons/linkpicker/js/linkpicker.js?' . 't=' . time()) . '"></script>';
-      $js .= '<link rel="stylesheet" href="' . rex_url::assets('addons/linkpicker/css/linkpicker.css?' . 't=' . time()) . '">';
       $page = str_replace('</body>', $js . '</body>', $page);
+
+      $css = '<link rel="stylesheet" href="' . rex_url::assets('addons/linkpicker/css/linkpicker.css?' . 't=' . time()) . '">';
+      $page = str_replace('</title>', '</title>' . $css, $page);
 
       $url = rex_getUrl(rex_article::getCurrentId());
 
-      $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<a class="' . $this->getName() . '-return" href="#" data-href="' . $url . '#$2">Auswählen</a>', $page);
+      $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<span class="' . $this->getName() . '-return" data-href="' . $url . '#$2">Link auswählen</span>', $page);
 
       return $page;
 

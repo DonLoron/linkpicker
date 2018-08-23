@@ -25,3 +25,12 @@ if(returnButtons.length > 0) {
     }, false);
   }
 }
+
+//add class to elements with id
+var elementsWithIDs = document.querySelectorAll("[id]");
+
+if(elementsWithIDs.length > 0) {
+  for (var i = 0; i < elementsWithIDs.length; i++) {
+    elementsWithIDs[i].classList.add(addonName + '-container');
+  }
+}
