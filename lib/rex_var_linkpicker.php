@@ -27,6 +27,7 @@ class rex_var_linkpicker extends rex_var
     if ($this->hasArg('widget') && $this->getArg('widget')) {
       $value = self::getWidget($id, $this->getContextData()->getValue('value' . $id));
     } else {
+      dump($this->getContextData());
       $value = $this->getContextData()->getValue('value' . $id);
     }
 
