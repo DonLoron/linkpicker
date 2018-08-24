@@ -10,9 +10,8 @@ function linepickerOpenIframe (that) {
   win.focus();
 
   window.setInputText = function(closedWindow) {
-    console.log(closedWindow);
-    console.log(closedWindow.linepicker);
     that.parentNode.previousSibling.value = closedWindow.linepicker;
+    closedWindow.close();
     return null;
   };
 }
@@ -27,7 +26,6 @@ if(returnButtons.length > 0) {
         eraseCookie(addonName);
         window.linepicker = this.getAttribute("data-href");
         window.opener.setInputText(window);
-        window.close();
       }
     }, false);
   }

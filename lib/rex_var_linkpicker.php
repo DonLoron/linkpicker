@@ -26,6 +26,8 @@ class rex_var_linkpicker extends rex_var
 
     if ($this->hasArg('widget') && $this->getArg('widget')) {
 
+      dump($this->getContextData());
+
       $value = self::getWidget($id, $this->getContextData()->getValue('value' . $id));
 
     } else {
@@ -39,7 +41,7 @@ class rex_var_linkpicker extends rex_var
 
     //this way, it will be generated for input.php
     if($generateREXInput) {
-      $name = self::VAR_NAME . "[$id]";
+      $name = "REX_INPUT_VALUE[$id]";
     } else {
       $name = $id;
     }
