@@ -4,20 +4,24 @@
 
 const addonName = 'linkpicker';
 
-function linepickerOpenIframe (that) {
+function linepickerOpenIframe (that, callable) {
 
   var win = window.open('/?' + addonName + '=true', '_blank', 'width=1300,height=800');
   win.focus();
 
   window.setInputText = function(closedWindow) {
-    that.parentNode.previousSibling.value = closedWindow.linepicker;
+
+    if(callable) callable(closedWindow.linepicker);
+    else that.parentNode.previousSibling.value = closedWindow.linepicker;
+
     closedWindow.close();
     return null;
   };
 }
 
 //this indicates where on choosing window
-var returnButtons = document.getElementsByClassName(addonName + "-return");
+var returnButtons = document.querySelectorAll("." + addonName + "-return");
+console.log(returnButtons);
 if(returnButtons.length > 0) {
   //bind event listeners
   for (var i = 0; i < returnButtons.length; i++) {

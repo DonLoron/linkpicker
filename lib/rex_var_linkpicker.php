@@ -25,11 +25,7 @@ class rex_var_linkpicker extends rex_var
     }
 
     if ($this->hasArg('widget') && $this->getArg('widget')) {
-
-      dump($this->getContextData());
-
       $value = self::getWidget($id, $this->getContextData()->getValue('value' . $id));
-
     } else {
       $value = $this->getContextData()->getValue('value' . $id);
     }
@@ -48,7 +44,7 @@ class rex_var_linkpicker extends rex_var
 
     $e = [];
     $e['before'] = '';
-    $e['field'] = '<input class="form-control" type="text" name="' . $name . '" value="' . $value  . '" id="REX_MEDIA_' . $id . '" />';
+    $e['field'] = '<input class="form-control" type="text" name="' . $name . '" value="' . $value  . '" id="' . self::VAR_NAME . '_' . $id . '" />';
     $e['functionButtons'] = '<a href="#" class="btn btn-popup" onclick="linepickerOpenIframe(this); return false;" ><i class="rex-icon fa-crosshairs"></i></a>';
 
     $fragment = new rex_fragment();
