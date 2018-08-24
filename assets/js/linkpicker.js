@@ -1,10 +1,10 @@
 /**
- * Created by walderwerber on 23.08.18.
+ * Created by Laurin Waller on 23.08.18.
  */
 
 const addonName = 'linkpicker';
 
-function linepickerOpenIframe (that, callable) {
+function linkpickerOpenIframe (that, callable) {
 
   var win = window.open('/?' + addonName + '=true', '_blank', 'width=1300,height=800');
   win.focus();
@@ -21,7 +21,7 @@ function linepickerOpenIframe (that, callable) {
 
 //this indicates where on choosing window
 var returnButtons = document.querySelectorAll("." + addonName + "-return");
-console.log(returnButtons);
+
 if(returnButtons.length > 0) {
   //bind event listeners
   for (var i = 0; i < returnButtons.length; i++) {
