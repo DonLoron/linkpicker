@@ -26,11 +26,12 @@ if(returnButtons.length > 0) {
   //bind event listeners
 
   // Get the element, add a click listener...
-  document.getElementsByTagName("body").addEventListener("click", function(e) {
-    if(e.target && e.classList.contains(addonName + "-return")) {
-      if(confirm("Möchten Sie die URL [" + this.getAttribute("data-href") + "] kopieren")) {
+  document.getElementsByTagName("body")[0].addEventListener("click", function(e) {
+    console.log(e);
+    if(e.target && e.target.classList.contains(addonName + "-return")) {
+      if(confirm("Möchten Sie die URL [" + e.target.getAttribute("data-href") + "] kopieren")) {
         eraseCookie(addonName);
-        window.linepicker = this.getAttribute("data-href");
+        window.linepicker = e.target.getAttribute("data-href");
         window.opener.setInputText(window);
       }
     }
