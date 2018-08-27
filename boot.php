@@ -28,7 +28,7 @@ if(rex::isBackend()) {
       preg_match_all('/<.*id=\"(.*)\".*>/Ui', $page, $matches);
 
       $doc = new DOMDocument();
-      $doc->loadHTML(mb_convert_encoding($page, 'HTML-ENTITIES', 'UTF-8'));
+      @$doc->loadHTML(mb_convert_encoding($page, 'HTML-ENTITIES', 'UTF-8'));
       $containerClass = $this->getName() . '-container';
       foreach($matches[1] as $match) {
         $domElement = $doc->getElementById($match);
