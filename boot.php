@@ -23,6 +23,20 @@ if(rex::isBackend()) {
 
       $css = '<link rel="stylesheet" href="' . rex_url::assets('addons/linkpicker/css/linkpicker.css?' . 't=' . time()) . '">';
       $page = str_replace('</title>', '</title>' . $css, $page);
+
+      //first get all ids, then loop through them by doing dom doc
+      preg_match_all('/<.*id=\"(.*)\".*>/Ui', $page, $matches);
+
+      $doc = new DOMDocument();
+      $doc->loadHTML(mb_convert_encoding($page, 'HTML-ENTITIES', 'UTF-8'));
+      $containerClass = $this->getName() . '-container';
+      foreach($matches[1] as $match) {
+        $domElement = $doc->getElementById($match);
+        $domElement->setAttribute('class', ($domElement->getAttribute('class') == "" ? $containerClass : $containerClass . ' ' . $domElement->getAttribute('class')));
+      }
+      $page = $doc->saveHTML();
+
+      //then add the linkpicker return url
       $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<span class="' . $this->getName() . '-return" data-href="' . $url . '#$2">Link auswählen</span>', $page);
 
       return $page;

@@ -24,27 +24,20 @@ var returnButtons = document.querySelectorAll("." + addonName + "-return");
 
 if(returnButtons.length > 0) {
   //bind event listeners
-  for (var i = 0; i < returnButtons.length; i++) {
-    returnButtons[i].addEventListener('click', function() {
+
+  // Get the element, add a click listener...
+  document.getElementsByTagName("body").addEventListener("click", function(e) {
+    if(e.target && e.classList.contains(addonName + "-return")) {
       if(confirm("Möchten Sie die URL [" + this.getAttribute("data-href") + "] kopieren")) {
         eraseCookie(addonName);
         window.linepicker = this.getAttribute("data-href");
         window.opener.setInputText(window);
       }
-    }, false);
-  }
+    }
+  });
 
   //write cookie so it is possible to browse complete page until return
   createCookie(addonName, "true", 1);
-}
-
-//add class to elements with id
-var elementsWithIDs = document.querySelectorAll("[id]");
-
-if(elementsWithIDs.length > 0) {
-  for (var i = 0; i < elementsWithIDs.length; i++) {
-    elementsWithIDs[i].classList.add(addonName + '-container');
-  }
 }
 
 // Create cookie
