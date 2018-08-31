@@ -2,25 +2,25 @@ $.Redactor.prototype.linkpicker = function() {
   return {
     langs: {
       de: {
-        "linkpicker": "Externer Link",
+        "linkpicker": "Anker auswählen",
         "linkpicker_linktext": "Linktext",
         "linkpicker_linkurl": "URL",
         "linkpicker_insert": "Einfügen",
         "linkpicker_abort": "Abbrechen"
       },
       en: {
-        "linkpicker": "External link",
+        "linkpicker": "Choose anchor",
         "linkpicker_linktext": "Linktext",
         "linkpicker_linkurl": "URL",
         "linkpicker_insert": "Insert",
         "linkpicker_abort": "Cancel"
       },
       es: {
-        "linkpicker": "Enlace externo",
-        "linkpicker_linktext": "Texto de Link",
+        "linkpicker": "Choose anchor",
+        "linkpicker_linktext": "Linktext",
         "linkpicker_linkurl": "URL",
-        "linkpicker_insert": "Insertar",
-        "linkpicker_abort": "Cancelar"
+        "linkpicker_insert": "Insert",
+        "linkpicker_abort": "Cancel"
       }
     },
     getTemplate: function() {
@@ -36,7 +36,7 @@ $.Redactor.prototype.linkpicker = function() {
         modalContent += '  </section>';
       }
 
-      modalContent += '  <section><label for="linkpicker_linkurl">' + this.lang.get('linkpicker_linkurl') + '</label><div class="input-group"><input type="text" class="form-control" name="linkpicker_linkurl" id="linkpicker_linkurl" /><span class="btn-group"><a href="#" class="btn btn-popup" onclick="linkpickerOpenIframe(this); return false;" ><i class="rex-icon fa-crosshairs"></i></a></span></div></section>';
+      modalContent += '  <section class="form-horizontal"><label for="linkpicker_linkurl">' + this.lang.get('linkpicker_linkurl') + '</label><div class="input-group"><input type="text" class="form-control" name="linkpicker_linkurl" id="linkpicker_linkurl" /><span class="input-group-btn"><a href="#" class="btn btn-popup" onclick="linkpickerOpenIframe(this); return false;" ><i class="rex-icon fa-crosshairs"></i></a></span></div></section>';
       modalContent += '  <section>';
       modalContent += '    <button id="redactor-modal-button-action">' + this.lang.get('linkpicker_insert') + '</button>';
       modalContent += '    <button id="redactor-modal-button-cancel">' + this.lang.get('linkpicker_abort') + '</button>';

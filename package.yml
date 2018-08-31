@@ -1,9 +1,9 @@
 package: linkpicker
-version: '0.0.2'
+version: '0.0.3'
 author: 'Laurin Waller'
 
 page:
-    title: Linkpicker
+    title: Anker auswählen
     hasLayout: false
     icon: rex-icon fa-crosshairs
     linkAttr: { onclick: 'linkpickerOpenIframe(this, function(string){ copyTextToClipboard(string) }); return false;' }

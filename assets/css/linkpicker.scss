@@ -9,6 +9,8 @@
     position: absolute;
     top: 100%;
     left: 0;
+    bottom: auto !important;
+    right: auto !important;
     opacity: 0;
     transition: opacity .3s, background-color .3s;
     color: #fff;
@@ -18,6 +20,11 @@
     font-size: 16px !important;
     width: auto !important;
     cursor: pointer;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    transform: none !important;
     &:hover {
       background-color: #31688f;
     }
