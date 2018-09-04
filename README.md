@@ -15,7 +15,18 @@ Syntax:
  * id: gibt artikel id zurück
  * hash: gibt nur den hash zurück
  * array: gibt url, id und hash als array zurück, `rex_var::toArray()` brauchen
- 
+
+Daraus resultieren folgende möglichkeiten:
+
+| Output Type | Ouput |
+|---|---|
+| REX_LINKPICKER[3] | http://addons.dev/#id-2 |
+| REX_LINKPICKER[id=3 output=url] | http://addons.dev/#id-2 |
+| REX_LINKPICKER[id=3 output=id] | 1 |
+| REX_LINKPICKER[id=3 output=hash] | #id-2 |
+| REX_LINKPICKER[id=3 output=array] | {"url":"http:\/\/addons.dev\/#id-2","hash":"#id-2","id":"1"} |
+
+
 Das Addon ermöglicht auch via Addon-Leiste das PopUp direkt zu öffnen und die ausgewählte URL in die Zwischenablage zu speichern. Das ist zum Beispiel hilfreich wenn ein slug auf einen anker weitergeleitet werden soll.
 
 ### Redactor Plugin
@@ -38,6 +49,16 @@ Syntax:
  * id: returns article id
  * hash: returns hash only
  * array: returns url, id and hash as array, use `rex_var::toArray()`
+
+This is results in following output types:
+
+| Output Type | Ouput |
+|---|---|
+| REX_LINKPICKER[3] | http://addons.dev/#id-2 |
+| REX_LINKPICKER[id=3 output=url] | http://addons.dev/#id-2 |
+| REX_LINKPICKER[id=3 output=id] | 1 |
+| REX_LINKPICKER[id=3 output=hash] | #id-2 |
+| REX_LINKPICKER[id=3 output=array] | {"url":"http:\/\/addons.dev\/#id-2","hash":"#id-2","id":"1"} |
  
 You can use the addon also for extracting urls by using the addonpage popup that copies the given url to your clipboard. This is usefull if you want to use the url in e.g. yRewrite for redirecting a slug to a given url with a hash.
 
