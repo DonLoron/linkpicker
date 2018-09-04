@@ -23,14 +23,6 @@ if(rex::isBackend()) {
         $url = substr(rex::getServer(), 0, strlen(rex::getServer()) - 1) . $url;
       }
 
-      $pagePickButton = "<span class=\"" . $this->getName() . "-return " . $this->getName() . "-pagepicker\" data-url=\"$url\" data-id=\"$currentId\" data-hash=\"\">Seite auswählen</span>";
-
-      $js = '<script type="text/javascript" src="' . rex_url::assets('addons/linkpicker/js/linkpicker.js?' . 't=' . time()) . '"></script>';
-      $page = str_replace('</body>', $pagePickButton . $js . '</body>', $page);
-
-      $css = '<link rel="stylesheet" href="' . rex_url::assets('addons/linkpicker/css/linkpicker.css?' . 't=' . time()) . '">';
-      $page = str_replace('</title>', '</title>' . $css, $page);
-
       //first get all ids, then loop through them by doing dom doc
       preg_match_all('/<.*id=\"(.*)\".*>/Ui', $page, $matches);
 
@@ -39,12 +31,20 @@ if(rex::isBackend()) {
       $containerClass = $this->getName() . '-container';
       foreach($matches[1] as $match) {
         $domElement = $doc->getElementById($match);
-        $domElement->setAttribute('class', ($domElement->getAttribute('class') == "" ? $containerClass : $containerClass . ' ' . $domElement->getAttribute('class')));
+        if($domElement !== null) $domElement->setAttribute('class', ($domElement->getAttribute('class') == "" ? $containerClass : $containerClass . ' ' . $domElement->getAttribute('class')));
       }
       $page = $doc->saveHTML();
 
       //then add the linkpicker return url
       $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<span class="' . $this->getName() . '-return" data-url="' . $url . '#$2" data-hash="#$2" data-id="' . $currentId . '">Link auswählen</span>', $page);
+
+      $pagePickButton = "<span class=\"" . $this->getName() . "-return " . $this->getName() . "-pagepicker\" data-url=\"$url\" data-id=\"$currentId\" data-hash=\"\">Seite auswählen</span>";
+
+      $js = '<script type="text/javascript" src="' . rex_url::assets('addons/linkpicker/js/linkpicker.js?' . 't=' . time()) . '"></script>';
+      $page = str_replace('</body>', $pagePickButton . $js . '</body>', $page);
+
+      $css = '<link rel="stylesheet" href="' . rex_url::assets('addons/linkpicker/css/linkpicker.css?' . 't=' . time()) . '">';
+      $page = str_replace('</title>', '</title>' . $css, $page);
 
       return $page;
 

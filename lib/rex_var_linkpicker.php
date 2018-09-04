@@ -34,7 +34,7 @@ class rex_var_linkpicker extends rex_var
     }
 
     if ($this->hasArg('widget') && $this->getArg('widget')) {
-      $value = self::getWidget($id, $this->getContextData()->getValue('value' . $id));
+      $value =self::getWidget($id, $this->getContextData()->getValue('value' . $id));
     } else {
 
       $var = rex_var::toArray($this->getContextData()->getValue('value' . $id));
@@ -47,7 +47,7 @@ class rex_var_linkpicker extends rex_var
           $value = $var['id'];
           break;
         case 'array':
-          $value = $var;
+          $value = $this->getContextData()->getValue('value' . $id);
           break;
         default:
           $value = $var['url'];
