@@ -13,3 +13,7 @@ Syntax:
  * id: returns article id
  * hash: returns hash only
  * array: returns url, id and hash as array
+
+You can use the addon also for extracting urls by using the addonpage popup that copies the given url to your clipboard.
+
+The Addon also comes with a plugin for [Redactor Editor 2](https://github.com/FriendsOfREDAXO/redactor2), just link the plugin file found in linkpicker addon assets.
