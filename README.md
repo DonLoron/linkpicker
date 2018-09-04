@@ -1,6 +1,6 @@
 ## Linkpicker
 
-**Bevor du startest: stelle sicher, dass elemente die du verlinken WILLST ein id-Attribut. Dieses Addon generiert KEINE id-Attribute**
+**Bevor du startest: stelle sicher, dass Elemente die du verlinken WILLST ein id-Attribut haben. Dieses Addon generiert KEINE id-Attribute**
 
 Das Addon ermöglicht dir das verwenden einer neuen REX_VAR - REX_LINKPICKER - die im backend ein widget erzeugt (ähnlich REX_LINK) welches die Möglichkeit bietet per Pop-Up ein Element mit id-Attribut auszuwählen und damit eine url mit hash zurückzuliefern. Dieses Addon is eigentlich spezifisch dafür dem Endandwender eine userfreundliche Möglichkeit zu bieten, Anker selbst zu setzen. 
 
