@@ -26,17 +26,19 @@ if(rex::isBackend()) {
       //first get all ids, then loop through them by doing dom doc
       preg_match_all('/<.*id=\"(.*)\".*>/Ui', $page, $matches);
 
-      $doc = new DOMDocument();
-      @$doc->loadHTML(mb_convert_encoding($page, 'HTML-ENTITIES', 'UTF-8'));
-      $containerClass = $this->getName() . '-container';
-      foreach($matches[1] as $match) {
-        $domElement = $doc->getElementById($match);
-        if($domElement !== null) $domElement->setAttribute('class', ($domElement->getAttribute('class') == "" ? $containerClass : $containerClass . ' ' . $domElement->getAttribute('class')));
-      }
-      $page = $doc->saveHTML();
+      if(count($matches[1]) > 0) {
+        $doc = new DOMDocument();
+        @$doc->loadHTML(mb_convert_encoding($page, 'HTML-ENTITIES', 'UTF-8'));
+        $containerClass = $this->getName() . '-container';
+        foreach($matches[1] as $match) {
+          $domElement = $doc->getElementById($match);
+          if($domElement !== null) $domElement->setAttribute('class', ($domElement->getAttribute('class') == "" ? $containerClass : $containerClass . ' ' . $domElement->getAttribute('class')));
+        }
+        $page = $doc->saveHTML();
 
-      //then add the linkpicker return url
-      $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<span class="' . $this->getName() . '-return" data-url="' . $url . '#$2" data-hash="#$2" data-id="' . $currentId . '">Link auswählen</span>', $page);
+        //then add the linkpicker return url
+        $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<span class="' . $this->getName() . '-return" data-url="' . $url . '#$2" data-hash="#$2" data-id="' . $currentId . '">Link auswählen</span>', $page);
+      }
 
       $pagePickButton = "<span class=\"" . $this->getName() . "-return " . $this->getName() . "-pagepicker\" data-url=\"$url\" data-id=\"$currentId\" data-hash=\"\">Seite auswählen</span>";
 
