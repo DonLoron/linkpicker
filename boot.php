@@ -23,7 +23,7 @@ if(rex::isBackend()) {
         $url = substr(rex::getServer(), 0, strlen(rex::getServer()) - 1) . $url;
       }
 
-      $pagePickButton = "<span class=\"" . $this->getName() . "-return " . $this->getName() . "-pagepicker\" data-href=\"$url\">Seite auswählen</span>";
+      $pagePickButton = "<span class=\"" . $this->getName() . "-return " . $this->getName() . "-pagepicker\" data-url=\"$url\" data-id=\"$currentId\" data-hash=\"\">Seite auswählen</span>";
 
       $js = '<script type="text/javascript" src="' . rex_url::assets('addons/linkpicker/js/linkpicker.js?' . 't=' . time()) . '"></script>';
       $page = str_replace('</body>', $pagePickButton . $js . '</body>', $page);
