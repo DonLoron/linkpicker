@@ -1,4 +1,4 @@
-#Linkpicker
+##Linkpicker
 
 Creates a new REX_VAR REX_LINKPICKER with which a widget will be generated with a pop up where a url can be picked or every element with a id attribute can be chosen  to set an achor on the link. This addon is specifically designed to make the non power users experience better.
 
