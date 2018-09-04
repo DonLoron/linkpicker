@@ -1,4 +1,4 @@
-##Linkpicker
+## Linkpicker
 
 **Bevor du startest: stelle sicher, dass elemente die du verlinken WILLST ein id-Attribut. Dieses Addon generiert KEINE id-Attribute**
 
@@ -18,10 +18,10 @@ Syntax:
  
 Das Addon ermöglicht auch via Addon-Leiste das PopUp direkt zu öffnen und die ausgewählte URL in die Zwischenablage zu speichern. Das ist zum Beispiel hilfreich wenn ein slug auf einen anker weitergeleitet werden soll.
 
-###Redactor Plugin
+### Redactor Plugin
 Das Addon liefert zudem ein Plugin für den [Redactor Editor 2](https://github.com/FriendsOfREDAXO/redactor2), einfach das Addon-Asset in der Redactor Konfiguration hinzufügen.
 
-##Linkpicker for our english friends
+## Linkpicker for our english friends
 
 **Before you start: make sure, elements you WANT to be pickable have the id-attribute. This addon does not generate ANY id's for you.**
 
@@ -41,5 +41,5 @@ Syntax:
  
 You can use the addon also for extracting urls by using the addonpage popup that copies the given url to your clipboard. This is usefull if you want to use the url in e.g. yRewrite for redirecting a slug to a given url with a hash.
 
-###Redactor Plugin
+### Redactor Plugin
 The Addon also comes with a plugin for [Redactor Editor 2](https://github.com/FriendsOfREDAXO/redactor2), just link the plugin file found in linkpicker addon assets.
