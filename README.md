@@ -4,7 +4,7 @@ Creates a new REX_VAR REX_LINKPICKER with which a widget will be generated with 
 
 Syntax:
 
-`REX_LINKPICKER[id={int 1 - 20}]` - Generates Widget with accoring id
+`REX_LINKPICKER[id={int 1 - 20}]` - Generates Widget with according id
 
 `REX_LINKPICKER[widget={int 1}]` - Widget or not?
 
