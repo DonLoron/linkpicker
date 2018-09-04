@@ -24,6 +24,9 @@ $.Redactor.prototype.linkpicker = function() {
       }
     },
     getTemplate: function() {
+
+      var that = this;
+
       var selectedText = this.selection.text();
 
       var modalContent = '';
@@ -36,7 +39,7 @@ $.Redactor.prototype.linkpicker = function() {
         modalContent += '  </section>';
       }
 
-      modalContent += '  <section class="form-horizontal"><label for="linkpicker_linkurl">' + this.lang.get('linkpicker_linkurl') + '</label><div class="input-group"><input type="text" class="form-control" name="linkpicker_linkurl" id="linkpicker_linkurl" /><span class="input-group-btn"><a href="#" class="btn btn-popup" onclick="linkpickerOpenIframe(this); return false;" ><i class="rex-icon fa-crosshairs"></i></a></span></div></section>';
+      modalContent += '  <section class="form-horizontal"><label for="linkpicker_link_url">' + this.lang.get('linkpicker_linkurl') + '</label><div class="input-group"><input type="text" class="form-control" name="linkpicker_link_url" id="linkpicker_link_url" /><span class="input-group-btn"><a href="#" class="btn btn-popup" id="linkpicker_link" onclick="linkpickerOpenIframe(this); return false;" ><i class="rex-icon fa-crosshairs"></i></a></span></div></section>';
       modalContent += '  <section>';
       modalContent += '    <button id="redactor-modal-button-action">' + this.lang.get('linkpicker_insert') + '</button>';
       modalContent += '    <button id="redactor-modal-button-cancel">' + this.lang.get('linkpicker_abort') + '</button>';
@@ -63,13 +66,13 @@ $.Redactor.prototype.linkpicker = function() {
         if ($('#linkpicker_linktext').length != 0) {
           $('#linkpicker_linktext').focus();
         } else {
-          $('#linkpicker_linkurl').focus();
+          $('#linkpicker_link_url').focus();
         }
       }, 1);
     },
     set: function() {
       var linktext = $('#linkpicker_linktext').val();
-      var linkurl = $('#linkpicker_linkurl').val();
+      var linkurl = $('#linkpicker_link_url').val();
       this.modal.close();
 
       var selectedText = this.selection.text();

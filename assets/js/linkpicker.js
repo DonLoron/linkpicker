@@ -11,8 +11,18 @@ function linkpickerOpenIframe (that, callable) {
 
   window.setInputText = function(closedWindow) {
 
-    if(callable) callable(closedWindow.linepicker);
-    else that.parentNode.previousSibling.value = closedWindow.linepicker;
+    if(callable) callable(closedWindow.linkpicker);
+    else {
+      if(document.getElementById(that.getAttribute('id') + '_url') !== null) {
+        document.getElementById(that.getAttribute('id') + '_url').value = closedWindow.linkpicker.url;
+      }
+      if(document.getElementById(that.getAttribute('id') + '_hash') !== null) {
+        document.getElementById(that.getAttribute('id') + '_hash').value = closedWindow.linkpicker.hash;
+      }
+      if(document.getElementById(that.getAttribute('id') + '_id') !== null) {
+        document.getElementById(that.getAttribute('id') + '_id').value = closedWindow.linkpicker.id;
+      }
+    }
 
     closedWindow.close();
     return null;
@@ -28,9 +38,15 @@ if(returnButtons.length > 0) {
   // Get the element, add a click listener...
   document.getElementsByTagName("body")[0].addEventListener("click", function(e) {
     if(e.target && e.target.classList.contains(addonName + "-return")) {
-      if(confirm("Möchten Sie die URL [" + e.target.getAttribute("data-href") + "] kopieren")) {
+      if(confirm("Möchten Sie die URL [" + e.target.getAttribute("data-url") + "] kopieren")) {
         eraseCookie(addonName);
-        window.linepicker = e.target.getAttribute("data-href");
+
+        window.linkpicker = {
+          url: e.target.getAttribute("data-url"),
+          id: e.target.getAttribute("data-id"),
+          hash: e.target.getAttribute("data-hash")
+        };
+
         window.opener.setInputText(window);
       }
     }

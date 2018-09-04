@@ -15,6 +15,7 @@ if(rex::isBackend()) {
 
       $page = $p->getSubject();
 
+      $currentId = rex_article::getCurrentId();
       $url = rex_getUrl(rex_article::getCurrentId());
 
       //allways make absolute paths
@@ -43,7 +44,7 @@ if(rex::isBackend()) {
       $page = $doc->saveHTML();
 
       //then add the linkpicker return url
-      $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<span class="' . $this->getName() . '-return" data-href="' . $url . '#$2">Link auswählen</span>', $page);
+      $page = preg_replace('/(<.*id=\"(.*)\".*>)/Ui', '$1<span class="' . $this->getName() . '-return" data-url="' . $url . '#$2" data-hash="#$2" data-id="' . $currentId . '">Link auswählen</span>', $page);
 
       return $page;
 

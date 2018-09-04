@@ -10,6 +10,11 @@
  * Syntax:
  *     REX_LINKPICKER[id={int 1 - 20}] // Generates Widget with accoring id
  *     REX_LINKPICKER[widget={int 1}] // widget or not?
+ *     REX_LINKPICKER[output={type}] // output type, default is url
+ *     - url: returns complete url -> rex_getUrl(id) + hash
+ *     - id: returns article id
+ *     - hash: returns hash only
+ *     - array: returns url, id and hash as array
  */
 class rex_var_linkpicker extends rex_var
 {
@@ -25,7 +30,7 @@ class rex_var_linkpicker extends rex_var
 
     //get arguments
     $id = $this->getArg('id', 0, true);
-    $wigdet = $this->getArg('widget') == '1';
+    $outputType = $this->getArg('output', 'url');
 
     if (!in_array($this->getContext(), ['module', 'action']) || !is_numeric($id) || $id < 1 || $id > 20) {
       return false;
@@ -34,7 +39,24 @@ class rex_var_linkpicker extends rex_var
     if ($this->hasArg('widget') && $this->getArg('widget')) {
       $value = self::getWidget($id, $this->getContextData()->getValue('value' . $id));
     } else {
-      $value = $this->getContextData()->getValue('value' . $id);
+
+      $var = rex_var::toArray($this->getContextData()->getValue('value' . $id));
+
+      switch($outputType) {
+        case 'hash':
+          $value = $var['hash'];
+          break;
+        case 'id':
+          $value = $var['id'];
+          break;
+        case 'array':
+          $value = $var;
+          break;
+        default:
+          $value = $var['url'];
+          break;
+      }
+
     }
 
     return self::quote($value);
@@ -49,17 +71,25 @@ class rex_var_linkpicker extends rex_var
    */
   public static function getWidget($id, $value = "", $generateREXInput = true) {
 
+    if(!is_array($value)) $value = rex_var::toArray($value);
+
     //this way, it will be generated for input.php
     if($generateREXInput) {
-      $name = "REX_INPUT_VALUE[$id]";
+      $nameURL = "REX_INPUT_VALUE[$id][url]";
+      $nameHash = "REX_INPUT_VALUE[$id][hash]";
+      $nameID = "REX_INPUT_VALUE[$id][id]";
     } else {
-      $name = $id;
+      $nameURL = $id . "[url]";
+      $nameHash = $id . "[hash]";
+      $nameID = $id . "[id]";
     }
 
     $e = [];
     $e['before'] = '';
-    $e['field'] = '<input class="form-control" type="text" name="' . $name . '" value="' . $value  . '" id="' . self::VAR_NAME . '_' . rex_string::normalize($id) . '" />';
-    $e['functionButtons'] = '<a href="#" class="btn btn-popup" onclick="linkpickerOpenIframe(this); return false;" ><i class="rex-icon fa-crosshairs"></i></a>';
+    $e['field'] = '<input class="form-control" type="text" name="' . $nameURL . '" value="' . $value['url']  . '" id="' . self::VAR_NAME . '_' . rex_string::normalize($id) . '_url" />';
+    $e['field'] .= '<input class="form-control" type="hidden" name="' . $nameHash . '" value="' . $value['hash']  . '" id="' . self::VAR_NAME . '_' . rex_string::normalize($id) . '_hash" />';
+    $e['field'] .= '<input class="form-control" type="hidden" name="' . $nameID . '" value="' . $value['id']  . '" id="' . self::VAR_NAME . '_' . rex_string::normalize($id) . '_id" />';
+    $e['functionButtons'] = '<a href="#" class="btn btn-popup" onclick="linkpickerOpenIframe(this); return false;" id="' . self::VAR_NAME . '_' . rex_string::normalize($id) . '" ><i class="rex-icon fa-crosshairs"></i></a>';
 
     $fragment = new rex_fragment();
     $fragment->setVar('elements', [$e], false);
